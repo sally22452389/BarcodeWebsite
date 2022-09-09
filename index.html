@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>線上條碼產生工具</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <header>
+    <h1>線上條碼產生工具</h1>
+  </header>
+  <body>
+    <div class="ol">
+      <div id="bcTarget"></div>
+    </div>
+
+    <form action="">
+      <h4>選擇產生條碼類型</h4>
+      <select id="barcodeTypesSelect" oninput="generateBarcode();">
+        <option value="code128">code128</option>
+        <option value="code93">code93</option>
+        <option value="code39">code39</option>
+        <option value="code11">code11</option>
+        <option value="codabar">codabar</option>
+        <option value="ean8">ean8</option>
+        <option value="ean13">ean13</option>
+        <option value="msi">msi</option>
+      </select>
+      <h4>輸入條碼數據</h4>
+      <input
+        type="text"
+        id="data"
+        name="data"
+        value="123456789"
+        placeholder="Please Enter some Text..."
+        oninput="generateBarcode();"
+      />
+      <h4>輸入條碼名稱</h4>
+      <input
+        type="text"
+        id="bcname"
+        name="bcname"
+        value=""
+        placeholder="Please Enter Barcode Name..."
+      />
+      <div>
+        <button type="submit">條碼添加至列表</button>
+      </div>
+    </form>
+    <br />
+    <section></section>
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="jquery-barcode.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

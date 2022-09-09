@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+i {
+    pointer-events: none;
+}
+
+header {
+    text-align: center;
+    padding: 10px;
+    background-color: skyblue;
+}
+
+div#bcTarget {
+    text-align: center;
+    margin: 30px auto 0 auto;
+}
+
+form {
+    text-align: center;
+    padding: 5px 0px;
+    h4 {
+        padding: 5px 0px;
+    }
+    input {
+        text-align: center;
+    }
+    div button {
+        margin-top: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+section {
+
+    display: flex;
+    flex-direction: column;
+    div.list {
+        border: 1px solid;
+        border-radius: 15px;
+        margin: 0.2rem 1rem;
+        display: flex;
+        p.list-name {
+            margin-left: 1rem;
+            width: 30%;
+            text-align: center;
+        }
+        p.list-barcode {
+            margin-right: 1rem;
+            width: 30%;
+            text-align: center;
+            align-items: center;
+        }
+        button {
+            padding: 0.2rem 0.5rem ;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+    }
+    
+}
+    
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes scaleDown {
+    to {
+        transform:scale(0)
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    section {
+        div.list {
+            margin: 0.2rem 35%;
+            p.list-name {
+                margin-left: 2rem;
+            }
+        }
+    }
+  }
