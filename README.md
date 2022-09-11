@@ -9,8 +9,7 @@ A create barcode web using JavaScript & jQuery.
 
 ## About BarcodeProject
 * 可以在電腦或手機不同尺寸螢幕上執行
-* 產生條碼 [Open Source](https://barcode-coder.com/en/)
-* 產生列表儲存至 local storage
-* 點擊列表中條碼圖示以顯示列表該條碼
+* 使用jQuery library產生條碼 [Open Source](https://barcode-coder.com/en/)
+* 產生列表內容保存至 local storage
 * 點擊列表中刪除圖示 DOM Element & local storage 同步刪除
-* 自動產生條碼名稱
+
