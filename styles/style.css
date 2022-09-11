@@ -20,21 +20,24 @@ header {
 }
 
 div#bcTarget {
+  min-height: 100px;
   text-align: center;
-  margin: 30px auto 0 auto;
+  margin: 20px auto 0 auto;
 }
 
 form {
+  position: relative;
   text-align: center;
   padding: 5px 0px;
 }
 
 form h4 {
-  padding: 5px 0px;
+  margin-top: 15px;
 }
 
 form input {
   text-align: center;
+  width: 200px;
 }
 
 form div button {
@@ -45,6 +48,9 @@ form div button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 0.3rem 0.5rem;
+  border: none;
+  cursor: pointer;
 }
 
 section {
@@ -58,32 +64,30 @@ section {
 }
 
 section div.list {
-  border: 1px solid;
-  border-radius: 15px;
-  margin: 0.2rem 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 0.2rem 1rem;
+  height: 75px;
+  border: 1px solid;
+  border-radius: 10px;
 }
 
 section div.list p.list-name {
-  margin-left: 1rem;
-  width: 30%;
+  padding: 25px 0;
+  width: 65px;
   text-align: center;
 }
 
-section div.list p.list-barcode {
-  margin-right: 1rem;
-  width: 30%;
-  text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+section div.list img {
+  max-width: 150px;
 }
 
 section div.list button {
   padding: 0.2rem 0.5rem;
-  font-size: 1rem;
+  font-size: 2rem;
   border: none;
   cursor: pointer;
 }
@@ -124,12 +128,9 @@ section div.list button {
   }
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 850px) {
   section div.list {
     margin: 0.2rem 35%;
-  }
-  section div.list p.list-name {
-    margin-left: 2rem;
   }
 }
 /*# sourceMappingURL=style.css.map */
