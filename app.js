@@ -4,14 +4,16 @@ function generateBarcode() {
   let bcTypes = document.getElementById("barcodeTypesSelect").value;
   let bcTarget = $("#bcTarget").empty().barcode($("#data").val(), bcTypes, {
     barWidth: 1,
-    barHeight: 50,
+    barHeight: 80,
     showHRI: true,
     output: "svg",
   });
   if (bcTarget[0].innerHTML === "") {
     document.getElementById("bcTarget").innerHTML =
       "條碼數據與所選類別格式不符合!";
-    document.getElementById("bcTarget").style = null;
+    document.getElementById("bcTarget").style.padding = "37px 0px";
+    document.getElementById("bcTarget").style.width = null;
+    document.getElementById("bcTarget").style.color = "red";
   }
   return bcTarget;
 }
@@ -47,25 +49,16 @@ add.addEventListener("click", (e) => {
   let barcodeName = document.createElement("p");
   barcodeName.classList.add("list-name");
   barcodeName.innerText = bcName;
-  let barcodeData = document.createElement("p");
+  let bcImg = bcTarget.firstElementChild;
+  let barcodeData = document.createElement("img");
+  let bcImgBase64Str = bcTarget.firstElementChild.src;
+  barcodeData = bcImg;
   barcodeData.classList.add("list-barcode");
   barcodeData.innerText = bcData;
   barcodeList.appendChild(barcodeName);
   barcodeList.appendChild(barcodeData);
 
-  // create barcode read and trash
-  let barcodeReadButton = document.createElement("button");
-  barcodeReadButton.classList.add("barcode-read");
-  barcodeReadButton.innerHTML = '<i class="fa-solid fa-barcode"></i>';
-  barcodeReadButton.addEventListener("click", (e) => {
-    // change input data and bcname value
-    let showBarcode = e.target.parentElement.children[1].innerText;
-    let showBcName = e.target.parentElement.children[0].innerText;
-    bcname.value = showBcName;
-    data.value = showBarcode;
-    generateBarcode();
-  });
-
+  // create trash button
   let trashButton = document.createElement("button");
   trashButton.classList.add("trash");
   trashButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
@@ -87,7 +80,6 @@ add.addEventListener("click", (e) => {
     bcList.style.animation = "scaleDown 0.25s forwards";
   });
 
-  barcodeList.appendChild(barcodeReadButton);
   barcodeList.appendChild(trashButton);
 
   barcodeList.style.animation = "scaleUp 0.25s forwards";
@@ -96,6 +88,7 @@ add.addEventListener("click", (e) => {
   let myBarcode = {
     bcName: bcName,
     bcData: bcData,
+    bcImg: bcImgBase64Str,
   };
 
   // store data into an array of objects
@@ -107,15 +100,14 @@ add.addEventListener("click", (e) => {
     myListArray.push(myBarcode);
     localStorage.setItem("list", JSON.stringify(myListArray));
   }
-  console.log(JSON.parse(localStorage.getItem("list")));
-  // console.log(JSON.stringify(localStorage.getItem("list")));
 
   section.appendChild(barcodeList);
-  barcodeNaming();
+  generateBarcode();
+  bcname.value = "";
 });
 
 loadData();
-barcodeNaming();
+
 function loadData() {
   let myList = localStorage.getItem("list");
   if (myList !== null) {
@@ -127,25 +119,14 @@ function loadData() {
       let barcodeName = document.createElement("p");
       barcodeName.classList.add("list-name");
       barcodeName.innerText = item.bcName;
-      let barcodeData = document.createElement("p");
+      let barcodeData = document.createElement("img");
+      barcodeData.src = item.bcImg;
       barcodeData.classList.add("list-barcode");
       barcodeData.innerText = item.bcData;
       barcodeList.appendChild(barcodeName);
       barcodeList.appendChild(barcodeData);
 
-      // create barcode read and trash
-      let barcodeReadButton = document.createElement("button");
-      barcodeReadButton.classList.add("barcode-read");
-      barcodeReadButton.innerHTML = '<i class="fa-solid fa-barcode"></i>';
-      barcodeReadButton.addEventListener("click", (e) => {
-        // change input data and bcname value
-        let showBarcode = e.target.parentElement.children[1].innerText;
-        let showBcName = e.target.parentElement.children[0].innerText;
-        bcname.value = showBcName;
-        data.value = showBarcode;
-        generateBarcode();
-      });
-
+      // create trash button
       let trashButton = document.createElement("button");
       trashButton.classList.add("trash");
       trashButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
@@ -160,38 +141,13 @@ function loadData() {
               localStorage.setItem("list", JSON.stringify(myListArray));
             }
           });
-          console.log(bcList.children[0].innerText);
           bcList.remove();
         });
         bcList.style.animation = "scaleDown 0.25s forwards";
       });
 
-      barcodeList.appendChild(barcodeReadButton);
       barcodeList.appendChild(trashButton);
-
       section.appendChild(barcodeList);
     });
   }
-}
-
-function barcodeNaming() {
-  let tempbcNumber = 0;
-  let barcodeListArray = [];
-  barcodeListArray = JSON.parse(localStorage.getItem("list"));
-  let listLength = 0;
-  if (barcodeListArray != null) {
-    listLength = barcodeListArray.length;
-  }
-  for (let i = 0; i < listLength; i++) {
-    for (let j = 0; j < listLength; j++) {
-      if (`條碼${i}` == barcodeListArray[j].bcName) {
-        tempbcNumber += 1;
-      }
-    }
-  }
-
-  // console.log(barcodeListArray[0].bcName);
-  bcname.value = "條碼" + tempbcNumber;
-
-  console.log("barcodeListLength:" + listLength);
 }
