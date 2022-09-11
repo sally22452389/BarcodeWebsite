@@ -18,9 +18,7 @@
     <h1>線上條碼產生工具</h1>
   </header>
   <body>
-    <div class="ol">
-      <div id="bcTarget"></div>
-    </div>
+    <div id="bcTarget"></div>
 
     <form action="">
       <h4>選擇產生條碼類型</h4>
@@ -41,7 +39,7 @@
         name="data"
         value="123456789"
         placeholder="Please Enter some Text..."
-        oninput="generateBarcode();"
+        oninput="generateBarcode()"
       />
       <h4>輸入條碼名稱</h4>
       <input
